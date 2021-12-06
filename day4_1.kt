@@ -30,15 +30,15 @@ fun main() {
             for (row in board) {
                 for ((i, v) in row.withIndex()) {
                     if (v == number) {
-                        row[i] = -Int.MAX_VALUE
+                        row[i] = Int.MIN_VALUE
                     }
                 }
             }
         }
 
         val result = boards.firstOrNull { board ->
-            (0 until boardSize).any { rowNumber -> board[rowNumber].all { it < 0 } } ||
-                    (0 until boardSize).any { columnNumber -> board.all { it[columnNumber] < 0 } }
+            (0 until boardSize).any { rowNumber -> board[rowNumber].all { it == Int.MIN_VALUE } } ||
+                    (0 until boardSize).any { columnNumber -> board.all { it[columnNumber] == Int.MIN_VALUE } }
         }
 
         if (result != null) {
